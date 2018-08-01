@@ -1,13 +1,13 @@
-import React from "react";
-import {connect} from 'react-redux';
-import {clickAction} from './action';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import { clickAction } from './action';
 
-const App = ({clickAction}) => {
-  return <div>
-    <button onClick={clickAction}>Hello world</button>
+const App = props =>
+  <div>
+    <Button onClick={props.clickAction}>Click me</Button>
   </div>;
-};
 
-const mapStateToProps = state => ({state})
+const mapStateToProps = state => ({ state });
 
-export default connect(mapStateToProps, {clickAction})(App);
+export default connect(mapStateToProps, { clickAction })(App);
