@@ -5,7 +5,9 @@ import { clickAction } from './action';
 
 const App = props =>
   <div>
-    <Button onClick={props.clickAction}>Click me</Button>
+    <Button color="success" onClick={props.clickAction}>
+      Click me
+    </Button>
   </div>;
 
 const mapStateToProps = state => ({ state });
