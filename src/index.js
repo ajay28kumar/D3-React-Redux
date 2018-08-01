@@ -7,11 +7,10 @@ import store from './store';
 
 import './styles.css';
 
-
 const rootElement = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
-    <App {...store} />
+    <App dispatch={store.dispatch} getState={store.getState()} />
   </Provider>,
   rootElement,
 );

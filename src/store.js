@@ -1,9 +1,9 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-// import { composeWithDevTools } from 'redux-devtools-extension';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
-const logger = ({ getState }) => next => action => {
+const listener = ({ getState }) => next => action => {
   // Call the next dispatch method in the middleware chain.
   const returnValue = next(action);
   const payload = { actionType: action.type, state: getState() };
@@ -12,14 +12,16 @@ const logger = ({ getState }) => next => action => {
   // a middleware further in chain changed it.
   return returnValue;
 };
-const middleWares = [thunk, logger];
+
+const middleWares = [thunk, listener];
 const configureStore = initialState =>
-  createStore(
-    combineReducers(reducers),
-    (initialState = {}),
-    compose(applyMiddleware(...middleWares), window.devToolExtension ? window.devToolExtension() : f => f),
-  );
+  createStore(combineReducers(reducers), (initialState = {}), composeWithDevTools(applyMiddleware(...middleWares)));
 
 const store = configureStore();
+
+/**
+ * Handle Array case (with UNDO feature);
+ * Create localstate for D3 DataBase
+ */
 
 export default store;
