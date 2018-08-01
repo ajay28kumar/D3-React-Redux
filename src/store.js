@@ -1,39 +1,19 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 // import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
-const configureStore = initialState =>
-  createStore(
-    combineReducers(reducers),
-    (initialState = {}),
-    compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : f => f),
-    // composeWithDevTools(applyMiddleware(thunk))
-  );
+const logger = ({ getState }) => next => action => {
+  // Call the next dispatch method in the middleware chain.
+  const returnValue = next(action);
+  console.log('state after dispatch', getState(), action.type);
+  // This will likely be the action itself, unless
+  // a middleware further in chain changed it.
+  return returnValue;
+};
+const middleWares = [thunk, logger];
+const configureStore = initialState => createStore(combineReducers(reducers), (initialState = {}), applyMiddleware(...middleWares));
 
 const store = configureStore();
 
-store.subscribe(() => {
-  /**
-   * store.getState() is my state data ;
-   */
-  console.log('store : ', store);
-});
-
 export default store;
-
-/*
-export const configure = (initialState={}) => {
-	const reducer= combineReducers(reducers)
-
-	const store = redux.createStore(reducer, initialState, redux.compose(
-
-			redux.applyMiddleware(thunk),
-
-			window.devToolsExtension ? window.devToolsExtension() : f => f
-		));
-
-
-	return store;
-};
- */
