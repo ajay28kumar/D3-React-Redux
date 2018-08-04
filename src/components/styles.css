@@ -1,0 +1,39 @@
+:local(.colorPickerWrapper) {
+  font-size: 0.875rem;
+  color: #323232;
+  display: flex;
+  
+  border-radius: 0.25rem;
+  max-height: 2.25rem;
+}
+
+
+:local(.colorPickerStyles) {
+  display: flex;
+}
+
+:local(.colorPicker) {
+  background-color: #e5e5e5;
+}
+
+:local(.selectedColorPreview) {
+  height: 20px;
+  min-width: 20px;    
+  border-radius: 50%;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+:local(.popover) {
+  position: absolute;
+  z-index: 9999;
+  left: 35%;
+}
+
+:local(.cover) {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
