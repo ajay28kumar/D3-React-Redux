@@ -3,10 +3,23 @@ import ChartArea from './ChartArea';
 import ChartMakerTool from './ChartMakerTool';
 import { initialState } from './initialState';
 import ChartCreator from '../D3JS';
+import { storeData } from '../listener/store';
 
 class ChartPage extends React.PureComponent {
   state = {
     ...initialState.state,
+  };
+
+  componentDidMount = () => {
+    storeData.addChangeListener(this._onChange);
+  };
+
+  componentWillUnmount = () => {
+    storeData.removeChangeListener(this._onChange);
+  };
+
+  _onChange = () => {
+    console.log('data : ', storeData.getEventData());
   };
 
   changeColor = ({ hex }) => {

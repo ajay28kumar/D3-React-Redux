@@ -43,15 +43,15 @@ class ChartMakerTool extends React.PureComponent {
 }
 
 const getCorrectTextColor = hex => {
-  /*
-  From this W3C document: http://www.webmasterworld.com/r.cgi?f=88&d=9769&url=http://www.w3.org/TR/AERT#color-contrast
-  
-  Color brightness is determined by the following formula:
-  ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
-  
-  I know this could be more compact, but I think this is easier to read/explain.
-  
-  */
+  /**
+   *From this W3C document: http://www.webmasterworld.com/r.cgi?f=88&d=9769&url=http://www.w3.org/TR/AERT#color-contrast
+   
+   *Color brightness is determined by the following formula:
+   *((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+   
+   *I know this could be more compact, but I think this is easier to read/explain.
+   
+   */
 
   const threshold = 130;
   /* about half of 256. Lower threshold equals more dark text on dark background  */

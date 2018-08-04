@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-
+import { handleD3Payload } from '../listener';
 import { initialState } from '../components/initialState';
 
 const Chart = function() {};
@@ -39,6 +39,11 @@ const create = function(el) {
     .attr('fill', '#78814D');
 
   // canva.on
+
+  d3.select('svg').on('click', () => {
+    console.log('hello world');
+    handleD3Payload('ClickAction', {});
+  });
 };
 
 const update = function(eventName) {
