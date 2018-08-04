@@ -1,6 +1,6 @@
 export const initialState = {
   state: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     series_data: [
       {
         ticker: 'AAPL',
